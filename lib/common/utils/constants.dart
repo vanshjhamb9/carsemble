@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Constants {
-  // Backend URL for RELEASE APK on same network:
-  // 1. Replace with your PC's IP (run "ipconfig" and use IPv4, e.g. 192.168.1.7 or 10.102.81.233)
-  // 2. Run Laravel: php artisan serve --host=0.0.0.0 --port=8000
-  // 3. Allow port 8000 in Windows Firewall if needed
-  // For ngrok (works from any network): use https://your-subdomain.ngrok-free.dev
-  static const dommain = 'http://192.168.1.7:8000';
+  // Public dump only — not FKM-App source of truth. Defaults intentionally inert.
+  // Canonical app: https://github.com/vanshjhamb9/FKM-App
+  static const dommain = 'https://app.fitkarnatakamission.com';
   static const baseUrl = '$dommain/api/development/';
 
-  /// Must match the backend and the value used in Postman (e.g. x-api-key header).
-  static const apiKey = '1234';
+  /// Do not ship real keys in this public dump. Use FKM-App + dart-define.
+  static const apiKey = String.fromEnvironment('FKM_API_KEY');
   static const scheme = 'academyapp';
 
   /// Default currency when API doesn't provide one (e.g. INR for Rs).
