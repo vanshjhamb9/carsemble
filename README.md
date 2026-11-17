@@ -20,3 +20,7 @@ Public search for “carsemble” currently lands on FKM Flutter code. That conf
 ## Original dump note
 
 FKM LMS (Fit Karnataka Mission) Flutter project snapshot. Do not treat as production Carsemble or as the current FKM-App tip.
+
+## Hygiene
+
+Removed root/`tool` `login_debug.dart` scripts that embedded sample login credentials (`apiKey`/`password`) from this public dump.
