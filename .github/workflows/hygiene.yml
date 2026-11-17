@@ -1,0 +1,36 @@
+name: Dump hygiene
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  no-secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail on credential/debug regressions
+        run: |
+          set -euo pipefail
+          fail=0
+          if grep -RInE "apiKey[[:space:]]*=[[:space:]]*['\"]1234['\"]" lib; then
+            echo "::error::Hard-coded apiKey 1234 must not return"
+            fail=1
+          fi
+          if ! grep -qn "String.fromEnvironment('FKM_API_KEY')" lib/common/utils/constants.dart; then
+            echo "::error::Constants.apiKey must use fromEnvironment('FKM_API_KEY')"
+            fail=1
+          fi
+          if [[ -f lib/app/services/authentication_service/login_debug.dart ]]; then
+            echo "::error::login_debug.dart must stay deleted"
+            fail=1
+          fi
+          if grep -RInE "^[[:space:]]*print\([[:space:]]*token\b" lib \
+            || grep -RInE "^[[:space:]]*print\([[:space:]]*(body|res\.body)" lib; then
+            echo "::error::Debug print(token/body) must stay removed"
+            fail=1
+          fi
+          if grep -RInE "x-api-key:[[:space:]]*1234" --include='*.md' .; then
+            echo "::error::Docs must not hard-code x-api-key: 1234"
+            fail=1
+          fi
+          exit "$fail"
