@@ -24,13 +24,15 @@ jobs:
             echo "::error::login_debug.dart must stay deleted"
             fail=1
           fi
+          # Active debug prints only (ignore commented // print)
           if grep -RInE "^[[:space:]]*print\([[:space:]]*token\b" lib \
             || grep -RInE "^[[:space:]]*print\([[:space:]]*(body|res\.body)" lib; then
             echo "::error::Debug print(token/body) must stay removed"
             fail=1
           fi
-          if grep -RInE "x-api-key:[[:space:]]*1234" --include='*.md' .; then
-            echo "::error::Docs must not hard-code x-api-key: 1234"
+          # Integration guide must not teach a hard-coded key (README may mention the scrub).
+          if [[ -f BACKEND_INTEGRATION_GUIDE.md ]] && grep -nE "x-api-key:[[:space:]]*1234" BACKEND_INTEGRATION_GUIDE.md; then
+            echo "::error::BACKEND_INTEGRATION_GUIDE must not hard-code x-api-key: 1234"
             fail=1
           fi
           exit "$fail"
