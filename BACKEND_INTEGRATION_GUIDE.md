@@ -9,7 +9,7 @@ This guide lists all app features that depend on the backend, documents how **lo
 | Item | Location | Value |
 |------|----------|--------|
 | Base URL | `lib/common/utils/constants.dart` | `dommain` + `/api/development/` |
-| API key header | All requests | `x-api-key: 1234` (from `Constants.apiKey`) |
+| API key header | All requests | `x-api-key: <FKM_API_KEY>` (from `--dart-define` / `Constants.apiKey`; empty in this public dump) |
 | Locale header | All requests | `x-locale: <language>` (e.g. `en`, `ar`) |
 | Auth header (when logged in) | Protected requests | `Authorization: Bearer <token>` |
 

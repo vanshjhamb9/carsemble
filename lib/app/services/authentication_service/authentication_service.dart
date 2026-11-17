@@ -200,9 +200,6 @@ class AuthenticationService{
 
         body.addEntries({'fields': bodyFields.toString()}.entries);        
       }
-      print(body);
-
-
       Response res = await httpPost(
         url, 
         body
@@ -239,8 +236,6 @@ class AuthenticationService{
         'password': password,
         'password_confirmation': repeatPassword,
       };
-      print(body);
-      
       if(fields != null){
         Map bodyFields = {};
         for (var i = 0; i < fields.length; i++) {
@@ -262,9 +257,6 @@ class AuthenticationService{
         url, 
         body
       );
-
-      print(res.body);
-      
       var jsonResponse = jsonDecode(res.body);
        if( jsonResponse['success'] || jsonResponse['status'] == 'go_step_2' || jsonResponse['status'] == 'go_step_3' ){ // || stored
         
