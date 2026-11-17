@@ -152,8 +152,6 @@ class CartService{
       }catch(e){}
 
       // print(res.statusCode);
-      print(res.body);
-      
       if(jsonResponse?['success'] ?? true){
         return res.body;
       }else{

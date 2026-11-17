@@ -24,9 +24,6 @@ class AssignmentService{
       );
 
       print(url);
-      print(res.body);
-      
-
       var jsonResponse = jsonDecode(res.body);
       
       if(jsonResponse['success']){

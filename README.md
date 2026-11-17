@@ -26,3 +26,5 @@ FKM LMS (Fit Karnataka Mission) Flutter project snapshot. Do not treat as produc
 Removed root/`tool` `login_debug.dart` scripts that embedded sample login credentials (`apiKey`/`password`) from this public dump.
 
 Also cleared default `apiKey=1234` / LAN HTTP host in `lib/common/utils/constants.dart` and removed `print(token)` from `http_handler.dart`.
+
+Also removed auth/cart/assignment `print(body|res.body)` debug lines and scrubbed the integration guide’s hard-coded `x-api-key: 1234` example.
