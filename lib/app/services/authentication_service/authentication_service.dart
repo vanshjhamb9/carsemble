@@ -66,7 +66,7 @@ class AuthenticationService{
     }
   }
 
-  /// Login: header x-api-key: 1234, body = username (email or full phone) + password.
+  /// Login: header x-api-key from Constants.apiKey (dart-define); body = username + password.
   static Future login({
     String? email,
     String? countryCode,
